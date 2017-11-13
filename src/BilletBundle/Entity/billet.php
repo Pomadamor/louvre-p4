@@ -5,10 +5,10 @@ namespace BilletBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * billet
+ * Billet
  *
  * @ORM\Table(name="billet")
- * @ORM\Entity(repositoryClass="BilletBundle\Repository\billetRepository")
+ * @ORM\Entity(repositoryClass="BilletBundle\Repository\BilletRepository")
  */
 class billet
 {
@@ -38,7 +38,101 @@ class billet
     /**
      * @var bool
      *
-     * @ORM\Column(name="journee", type="boolean", nullable=false)
+     * @ORM\Column(name="journee", type="boolean")
      */
     private $journee;
 
+   /**
+    *
+    * @ORM\ManyToOne(targetEntity="BilletBundle\Entity\commande")
+    * @ORM\JoinColumn(referencedColumnName="id")
+    */
+    private $commande;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="BilletBundle\Entity\type_tarif")
+     */
+    private $type_tarif;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Billet
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return Billet
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set journee
+     *
+     * @param boolean $journee
+     *
+     * @return Billet
+     */
+    public function setJournee($journee)
+    {
+        $this->journee = $journee;
+
+        return $this;
+    }
+
+    /**
+     * Get journee
+     *
+     * @return bool
+     */
+    public function getJournee()
+    {
+        return $this->journee;
+    }
+}

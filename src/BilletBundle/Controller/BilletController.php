@@ -19,10 +19,9 @@ class BilletController extends Controller
         return $this->render('BilletBundle:Billet:home.html.twig');
 	//return new Response($content);
     }
-  
     public function addAction()
     {
-    // On crée un objet Billet
+    // On crée un objet billet et commande
     $billet = new billet();
 
     // On crée le FormBuilder grâce au service form factory
@@ -30,8 +29,9 @@ class BilletController extends Controller
 
     // On ajoute les champs de l'entité que l'on veut à notre formulaire
     $formBuilder
-      ->add('dateVisit',      DateType::class)
-      ->add('email',     TextType::class)
+      ->add('nom',     TextType::class)
+      ->add('prenom',     TextType::class)
+      ->add('journee', CheckboxType::class)
       ->add('save',      SubmitType::class)
     ;
     // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
@@ -41,9 +41,34 @@ class BilletController extends Controller
 
     // On passe la méthode createView() du formulaire à la vue
     // afin qu'elle puisse afficher le formulaire toute seule
-    return $this->render('BilletBundle:Billet:add.html.twig', array(
+    return $this->render('BilletBundle:Billet:index.html.twig', array(
       'form' => $form->createView(),
     ));
   }
-    
+
+  //   public function addCommandeAction()
+  //   {
+  //   // On crée un objet billet et commande
+  //   $commande = new commande();
+  //
+  //   // On crée le FormBuilder grâce au service form factory
+  //   $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $commande);
+  //
+  //   // On ajoute les champs de l'entité que l'on veut à notre formulaire
+  //   $formBuilder
+  //     ->add('save',      SubmitType::class)
+  //   ;
+  //   // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
+  //
+  //   // À partir du formBuilder, on génère le formulaire
+  //   $form = $formBuilder->getForm();
+  //
+  //   // On passe la méthode createView() du formulaire à la vue
+  //   // afin qu'elle puisse afficher le formulaire toute seule
+  //   return $this->render('BilletBundle:Billet:add.html.twig', array(
+  //     'form' => $form->createView(),
+  //   ));
+  // }
+
+
 }

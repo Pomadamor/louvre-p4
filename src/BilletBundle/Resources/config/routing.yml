@@ -27,4 +27,3 @@ Billet_ticket_mentions:
     path:     /mentionlegal
     defaults: { _controller: LouvreShopBundle:Booking:mentionsLegal}
     methods: [GET]
-
