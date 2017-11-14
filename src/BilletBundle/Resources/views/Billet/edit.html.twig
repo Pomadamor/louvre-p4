@@ -1,0 +1,25 @@
+{% extends "BilletBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier une annonce - {{ parent() }}
+{% endblock %}
+
+{% block billet_body %}
+
+  <h2>Modifier une annonce</h2>
+
+  {{ include("BilletBundle:Billet:form.html.twig") }}
+
+  <p>
+    Vous éditez une annonce déjà existante, merci de ne pas changer
+    l'esprit générale de l'annonce déjà publiée.
+  </p>
+
+  <p>
+  <a href="{{ path('Billet_home') }}" class="btn btn-default">
+    <i class="glyphicon glyphicon-chevron-left"></i>
+    Retour à la liste
+  </a>
+  </p>
+
+{% endblock %}

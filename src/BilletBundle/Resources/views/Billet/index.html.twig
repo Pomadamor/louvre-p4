@@ -1,13 +1,24 @@
 {% extends "BilletBundle::layout.html.twig" %}
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
 
-{% block body %}
+{% block billet_body %}
 
-  <h2>Réserver un billet</h2>
+  <h2>Liste des annonces</h2>
 
-  {{ include("BilletBundle:Billet:form.html.twig") }}
-
-  <p>
-    Attention : vous vous apprétez a reserver un billet.
-  </p>
+  <ul>
+    {% for billet in listBillets %}
+      <li>
+        <a href="{{ path('Billet_view', {'id': billet.id}) }}">
+          {{ billet.title }}
+        </a>
+        par {{ billet.author }},
+        le {{ billet.date|date('d/m/Y') }}
+      </li>
+    {% else %}
+      <li>Pas (encore !) d'annonces</li>
+    {% endfor %}
+  </ul>
 
 {% endblock %}

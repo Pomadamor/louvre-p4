@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Billeterie du Louvre</title>
+
+  {% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  {% endblock %}
+</head>
+
+<body>
+  <div class="jumbotrom">
+    <div class="container text-center">
+      <h1>Boutique du Louvre</h1>
+      <h2>Réservation de billet en ligne</h2>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Accueil</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    {% block body %}
+      {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
+      <h1>Billet</h1>
+      <hr>
+      {% block billet_body %}
+      {% endblock %}
+    {% endblock %}
+  </div>
+
+  <footer>
+    <p>Copyright © 2017 - Ines ECK - Tous droits réservés - <a href='#'>Mention légale</a></p>
+  </footer>
+
+  {% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  {% endblock %}
+</body>
+</html>

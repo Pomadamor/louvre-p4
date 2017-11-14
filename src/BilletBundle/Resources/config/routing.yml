@@ -1,29 +1,59 @@
+
+
 # Page d'accueil
 Billet_home :
     path:    /
+    defaults: {_controller: BilletBundle:Billet:index}
+    requirements:
+        id: \d+
+
+# Page test view
+Billet_view :
+    path:    /billet/{id}
+    defaults: {_controller: BilletBundle:Billet:view}
+    requirements:
+        id: \d+
+
+# Page add
+Billet_add :
+    path:    /add
     defaults: {_controller: BilletBundle:Billet:add}
-    methods: [POST,GET]
 
-# Page de verification
-Billet_verif :
-    path:    /verif
-    defaults: {_controller: BilletBundle:Billet:verif}
-    methods: [POST,GET]
+Billet_edit:
+    path:      /edit/{id}
+    defaults:
+        _controller: BilletBundle:Billet:edit
+    requirements:
+        id: \d+
 
-# Page de paiement
-Billet_paiement :
-    path:    /paiement
-    defaults: {_controller: BilletBundle:Billet:paiement}
-    methods: [POST,GET]
+Billet_delete:
+    path:      /delete/{id}
+    defaults:
+        _controller: BilletBundle:Billet:delete
+    requirements:
+        id: \d+
 
-# Page de confirmation
-Billet_confirmation :
-    path:    /confirmation
-    defaults: {_controller: BilletBundle:Billet:confirmation}
-    methods: [POST,GET]
-
-# Mentions légales
-Billet_ticket_mentions:
-    path:     /mentionlegal
-    defaults: { _controller: LouvreShopBundle:Booking:mentionsLegal}
-    methods: [GET]
+#
+# # Page de verification
+# Billet_verif :
+#     path:    /verif
+#     defaults: {_controller: BilletBundle:Billet:verif}
+#     methods: [POST,GET]
+#
+# # Page de paiement
+# Billet_paiement :
+#     path:    /paiement
+#     defaults: {_controller: BilletBundle:Billet:paiement}
+#     methods: [POST,GET]
+#
+# # Page de confirmation
+# Billet_confirmation :
+#     path:    /confirmation
+#     defaults: {_controller: BilletBundle:Billet:confirmation}
+#     methods: [POST,GET]
+#
+# # Mentions légales
+# Billet_ticket_mentions:
+#     path:     /mentionlegal
+#     defaults: { _controller: LouvreShopBundle:Booking:mentionsLegal}
+#     methods: [GET]

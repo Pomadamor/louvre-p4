@@ -1,10 +1,6 @@
 billet:
     resource: "@BilletBundle/Resources/config/routing.yml"
-    prefix:   /
-
-o_cplatform:
-    resource: "@OCplatformBundle/Resources/config/routing.yml"
-    prefix:   /platform
+    prefix:   /louvre
 
 app:
     resource: '@AppBundle/Controller/'
