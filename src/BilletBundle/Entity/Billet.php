@@ -1,16 +1,13 @@
 <?php
-
 namespace BilletBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Billet
  *
  * @ORM\Table(name="billet")
  * @ORM\Entity(repositoryClass="BilletBundle\Repository\BilletRepository")
  */
-class Billet
+class billet
 {
     /**
      * @var int
@@ -20,43 +17,34 @@ class Billet
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
-
     /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=255)
      */
     private $prenom;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime")
-     */
-    private $date;
-
     /**
      * @var bool
      *
      * @ORM\Column(name="journee", type="boolean")
      */
     private $journee;
-
+   /**
+    *
+    * @ORM\ManyToOne(targetEntity="BilletBundle\Entity\commande")
+    * @ORM\JoinColumn(referencedColumnName="id")
+    */
+    private $commande;
     /**
-     * @var string
-     *
-     * @ORM\Column(name="pays", type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="BilletBundle\Entity\type_tarif")
      */
-    private $pays;
-
-
+    private $type_tarif;
     /**
      * Get id
      *
@@ -66,7 +54,6 @@ class Billet
     {
         return $this->id;
     }
-
     /**
      * Set nom
      *
@@ -77,10 +64,8 @@ class Billet
     public function setNom($nom)
     {
         $this->nom = $nom;
-
         return $this;
     }
-
     /**
      * Get nom
      *
@@ -90,7 +75,6 @@ class Billet
     {
         return $this->nom;
     }
-
     /**
      * Set prenom
      *
@@ -101,10 +85,8 @@ class Billet
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
-
         return $this;
     }
-
     /**
      * Get prenom
      *
@@ -114,31 +96,6 @@ class Billet
     {
         return $this->prenom;
     }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Billet
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
     /**
      * Set journee
      *
@@ -149,10 +106,8 @@ class Billet
     public function setJournee($journee)
     {
         $this->journee = $journee;
-
         return $this;
     }
-
     /**
      * Get journee
      *
@@ -162,29 +117,4 @@ class Billet
     {
         return $this->journee;
     }
-
-    /**
-     * Set pays
-     *
-     * @param string $pays
-     *
-     * @return Billet
-     */
-    public function setPays($pays)
-    {
-        $this->pays = $pays;
-
-        return $this;
-    }
-
-    /**
-     * Get pays
-     *
-     * @return string
-     */
-    public function getPays()
-    {
-        return $this->pays;
-    }
 }
-

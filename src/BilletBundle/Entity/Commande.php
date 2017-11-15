@@ -1,9 +1,6 @@
 <?php
-
 namespace BilletBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Commande
  *
@@ -20,36 +17,30 @@ class Commande
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="list_billet", type="string", length=255)
-     */
-    private $listBillet;
-
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_visite", type="datetime")
+     * @ORM\Column(name="dateVisite", type="datetime")
      */
     private $dateVisite;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_achat", type="Datetime")
-     */
-    private $dateAchat;
-
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
-
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pays", type="string", length=255)
+     */
+    private $pays;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateAchat", type="datetime")
+     */
+    private $dateAchat;
     /**
      * Get id
      *
@@ -59,31 +50,6 @@ class Commande
     {
         return $this->id;
     }
-
-    /**
-     * Set listBillet
-     *
-     * @param string $listBillet
-     *
-     * @return Commande
-     */
-    public function setListBillet($listBillet)
-    {
-        $this->listBillet = $listBillet;
-
-        return $this;
-    }
-
-    /**
-     * Get listBillet
-     *
-     * @return string
-     */
-    public function getListBillet()
-    {
-        return $this->listBillet;
-    }
-
     /**
      * Set dateVisite
      *
@@ -94,10 +60,8 @@ class Commande
     public function setDateVisite($dateVisite)
     {
         $this->dateVisite = $dateVisite;
-
         return $this;
     }
-
     /**
      * Get dateVisite
      *
@@ -107,31 +71,6 @@ class Commande
     {
         return $this->dateVisite;
     }
-
-    /**
-     * Set dateAchat
-     *
-     * @param string $dateAchat
-     *
-     * @return Commande
-     */
-    public function setDateAchat($dateAchat)
-    {
-        $this->dateAchat = $dateAchat;
-
-        return $this;
-    }
-
-    /**
-     * Get dateAchat
-     *
-     * @return Datetime
-     */
-    public function getDateAchat()
-    {
-        return $this->dateAchat;
-    }
-
     /**
      * Set email
      *
@@ -142,10 +81,8 @@ class Commande
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
-
     /**
      * Get email
      *
@@ -154,5 +91,47 @@ class Commande
     public function getEmail()
     {
         return $this->email;
+    }
+    /**
+     * Set pays
+     *
+     * @param string $pays
+     *
+     * @return Commande
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+        return $this;
+    }
+    /**
+     * Get pays
+     *
+     * @return string
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+    /**
+     * Set dateAchat
+     *
+     * @param \DateTime $dateAchat
+     *
+     * @return Commande
+     */
+    public function setDateAchat($dateAchat)
+    {
+        $this->dateAchat = $dateAchat;
+        return $this;
+    }
+    /**
+     * Get dateAchat
+     *
+     * @return \DateTime
+     */
+    public function getDateAchat()
+    {
+        return $this->dateAchat;
     }
 }
