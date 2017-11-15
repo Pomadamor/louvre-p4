@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="billet")
  * @ORM\Entity(repositoryClass="BilletBundle\Repository\BilletRepository")
  */
-class billet
+class Billet
 {
     /**
      * @var int
@@ -36,23 +36,26 @@ class billet
     private $prenom;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="journee", type="boolean")
      */
     private $journee;
 
-   /**
-    *
-    * @ORM\ManyToOne(targetEntity="BilletBundle\Entity\commande")
-    * @ORM\JoinColumn(referencedColumnName="id")
-    */
-    private $commande;
-
     /**
-     * @ORM\ManyToMany(targetEntity="BilletBundle\Entity\type_tarif")
+     * @var string
+     *
+     * @ORM\Column(name="pays", type="string", length=255)
      */
-    private $type_tarif;
+    private $pays;
+
 
     /**
      * Get id
@@ -113,6 +116,30 @@ class billet
     }
 
     /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Billet
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
      * Set journee
      *
      * @param boolean $journee
@@ -135,4 +162,29 @@ class billet
     {
         return $this->journee;
     }
+
+    /**
+     * Set pays
+     *
+     * @param string $pays
+     *
+     * @return Billet
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * Get pays
+     *
+     * @return string
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
 }
+

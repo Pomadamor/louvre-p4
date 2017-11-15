@@ -1,8 +1,8 @@
 <ul class="nav nav-pills nav-stacked">
   {% for billet in listBillets %}
     <li>
-      <a href="{{ path('oc_platform_view', {'id': billet.id}) }}">
-        {{ billet.title }}
+      <a href="{{ path('Billet_view', {'id': billet.id}) }}">
+        {{ billet.nom }}
       </a>
     </li>
   {% endfor %}

@@ -5,20 +5,36 @@
 
 {% block billet_body %}
 
-  <h2>Liste des annonces</h2>
+  <h2>Détail billet</h2>
 
+  {% for billet in listBillets %}
   <ul>
-    {% for billet in listBillets %}
-      <li>
+      <li>Commande numéro :
         <a href="{{ path('Billet_view', {'id': billet.id}) }}">
-          {{ billet.title }}
+          {{ billet.id}}
         </a>
-        par {{ billet.author }},
-        le {{ billet.date|date('d/m/Y') }}
       </li>
+      <li>
+        Prénom : {{ billet.prenom }}
+      </li>
+      <li>
+        Nom : {{ billet.nom }}
+      </li>
+      <li>
+        Date : {{ billet.date|date('d/m/Y') }}
+      </li>
+      <li>
+        Journée : {{ billet.journee }}
+      </li>
+      <li>
+        Pays : {{ billet.pays }}
+      </li>
+      <li>
+        Tarif : {{ billet.type_tarif }}
+      </li>
+      </ul>
     {% else %}
       <li>Pas (encore !) d'annonces</li>
-    {% endfor %}
-  </ul>
+  {% endfor %}
 
 {% endblock %}

@@ -1,3 +1,7 @@
+core:
+    resource: "@CoreBundle/Resources/config/routing.xml"
+    prefix:   /
+
 billet:
     resource: "@BilletBundle/Resources/config/routing.yml"
     prefix:   /louvre

@@ -22,23 +22,32 @@ class BilletController extends Controller
       // Notre liste d'annonce en dur
       $listBillets = array(
         array(
-          'title'   => 'Recherche développpeur Symfony',
+          'nom'   => 'Plop',
           'id'      => 1,
-          'author'  => 'Alexandre',
-          'content' => 'Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…',
-          'date'    => new \Datetime()),
+          'prenom'  => 'Alexandre',
+          'date'    => new \Datetime(),
+          'journee'   => 'true',
+          'pays'  => 'France',
+          'type_tarif'  => 'normal'
+        ),
         array(
-          'title'   => 'Mission de webmaster',
+          'nom'   => 'Mission de webmaster',
           'id'      => 2,
-          'author'  => 'Hugo',
-          'content' => 'Nous recherchons un webmaster capable de maintenir notre site internet. Blabla…',
-          'date'    => new \Datetime()),
+          'prenom'  => 'Hugo',
+          'date'    => new \Datetime(),
+          'journee'   => 'true',
+          'pays'  => 'France',
+          'type_tarif'  => 'normal'
+        ),
         array(
-          'title'   => 'Offre de stage webdesigner',
+          'nom'   => 'Offre de stage webdesigner',
           'id'      => 3,
-          'author'  => 'Mathieu',
-          'content' => 'Nous proposons un poste pour webdesigner. Blabla…',
-          'date'    => new \Datetime())
+          'prenom'  => 'Mathieu',
+          'date'    => new \Datetime(),
+          'journee'   => 'true',
+          'pays'  => 'France',
+          'type_tarif'  => 'normal',
+        )
       );
       // Et modifiez le 2nd argument pour injecter notre liste
       return $this->render('BilletBundle:Billet:index.html.twig', array(
@@ -58,6 +67,7 @@ class BilletController extends Controller
     return $this->render('BilletBundle:Billet:view.html.twig', array(
       'billet' => $billet
     ));
+
   }
 
   public function addAction(Request $request)
@@ -65,6 +75,13 @@ class BilletController extends Controller
     // La gestion d'un formulaire est particulière, mais l'idée est la suivante :
     // Si la requête est en POST, c'est que le visiteur a soumis le formulaire
     if ($request->isMethod('POST')) {
+      // On récupère le service
+      $antispam = $this->container->get('billet.antispam');
+      // Je pars du principe que $text contient le texte d'un message quelconque
+      $text = '...';
+      if ($antispam->isSpam($text)) {
+        throw new \Exception('Votre message a été détecté comme spam !');
+      }
       // Ici, on s'occupera de la création et de la gestion du formulaire
       $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
       // Puis on redirige vers la page de visualisation de cettte annonce

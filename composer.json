@@ -5,7 +5,7 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
-	    "OC\\platformBundle\\": "src/OC/platformBundle",
+	    "louvre\\CoreBundle\\": "src/louvre/CoreBundle",
  	    "BilletBundle\\": "src/BilletBundle"
         },
         "classmap": [
