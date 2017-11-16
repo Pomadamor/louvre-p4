@@ -5,7 +5,7 @@ namespace BilletBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-// use BilletBundle\Entity\billet;
+use BilletBundle\Entity\Billet;
 // use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 // use Symfony\Component\Form\Extension\Core\Type\DateType;
 // use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -72,24 +72,29 @@ class BilletController extends Controller
 
   public function addAction(Request $request)
   {
-    // La gestion d'un formulaire est particulière, mais l'idée est la suivante :
-    // Si la requête est en POST, c'est que le visiteur a soumis le formulaire
+    // Création de l'entité
+    $billet = new Billet();
+    $billet->setNom('Lerna');
+    $billet->setPrenom('Ines');
+    $billet->setJournee('1');
+    // On peut ne pas définir ni la date ni la publication,
+    // car ces attributs sont définis automatiquement dans le constructeur
+    // On récupère l'EntityManager
+    $em = $this->getDoctrine()->getManager();
+    // Étape 1 : On « persiste » l'entité
+    $em->persist($billet);
+    // Étape 2 : On « flush » tout ce qui a été persisté avant
+    $em->flush();
+    // Reste de la méthode qu'on avait déjà écrit
     if ($request->isMethod('POST')) {
-      // On récupère le service
-      $antispam = $this->container->get('billet.antispam');
-      // Je pars du principe que $text contient le texte d'un message quelconque
-      $text = '...';
-      if ($antispam->isSpam($text)) {
-        throw new \Exception('Votre message a été détecté comme spam !');
-      }
-      // Ici, on s'occupera de la création et de la gestion du formulaire
-      $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+      $request->getSession()->getFlashBag()->add('notice', 'Billet bien enregistrée.');
       // Puis on redirige vers la page de visualisation de cettte annonce
-      return $this->redirectToRoute('Billet_view', array('id' => 5));
+      return $this->redirectToRoute('Billet_view', array('id' => $billet->getId()));
     }
     // Si on n'est pas en POST, alors on affiche le formulaire
-    return $this->render('BilletBundle:Billet:add.html.twig');
+    return $this->render('BilletBundle:Billet:add.html.twig', array('billet' => $billet));
   }
+
   public function editAction($id, Request $request)
   {
     // Ici, on récupérera l'annonce correspondante à $id

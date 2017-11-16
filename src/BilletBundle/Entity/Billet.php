@@ -1,16 +1,13 @@
 <?php
-
 namespace BilletBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Billet
  *
  * @ORM\Table(name="billet")
  * @ORM\Entity(repositoryClass="BilletBundle\Repository\BilletRepository")
  */
-class billet
+class Billet
 {
     /**
      * @var int
@@ -20,14 +17,12 @@ class billet
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
-
     /**
      * @var string
      *
@@ -38,9 +33,10 @@ class billet
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date_visite", type="datetime")
      */
-    private $date;
+    private $dateVisite;
+
 
     /**
      * @var bool
@@ -49,13 +45,28 @@ class billet
      */
     private $journee;
 
+   /**
+    *
+    * @ORM\ManyToOne(targetEntity="BilletBundle\Entity\Commande")
+    * @ORM\JoinColumn(referencedColumnName="id")
+    */
+    private $commande;
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="pays", type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="BilletBundle\Entity\type_tarif")
+     */
+    private $type_tarif;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="BilletBundle\Entity\Choix_pays")
      */
     private $pays;
 
+    public function __construct()
+    {
+      // Par défaut, la date de l'annonce est la date d'aujourd'hui
+      $this->dateVisite = new \Datetime();
+    }
 
     /**
      * Get id
@@ -66,7 +77,6 @@ class billet
     {
         return $this->id;
     }
-
     /**
      * Set nom
      *
@@ -77,10 +87,8 @@ class billet
     public function setNom($nom)
     {
         $this->nom = $nom;
-
         return $this;
     }
-
     /**
      * Get nom
      *
@@ -90,7 +98,6 @@ class billet
     {
         return $this->nom;
     }
-
     /**
      * Set prenom
      *
@@ -101,10 +108,8 @@ class billet
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
-
         return $this;
     }
-
     /**
      * Get prenom
      *
@@ -118,13 +123,13 @@ class billet
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param \DateTime $dateVisite
      *
      * @return Billet
      */
-    public function setDate($date)
+    public function setDateVisite($dateVisite)
     {
-        $this->date = $date;
+        $this->dateVisite = $dateVisite;
 
         return $this;
     }
@@ -134,10 +139,11 @@ class billet
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateVisite()
     {
-        return $this->date;
+        return $this->dateVisite;
     }
+
 
     /**
      * Set journee
@@ -149,10 +155,8 @@ class billet
     public function setJournee($journee)
     {
         $this->journee = $journee;
-
         return $this;
     }
-
     /**
      * Get journee
      *
@@ -161,29 +165,5 @@ class billet
     public function getJournee()
     {
         return $this->journee;
-    }
-
-    /**
-     * Set pays
-     *
-     * @param string $pays
-     *
-     * @return Billet
-     */
-    public function setPays($pays)
-    {
-        $this->pays = $pays;
-
-        return $this;
-    }
-
-    /**
-     * Get pays
-     *
-     * @return string
-     */
-    public function getPays()
-    {
-        return $this->pays;
     }
 }
