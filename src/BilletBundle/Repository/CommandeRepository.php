@@ -1,7 +1,7 @@
 <?php
 
 namespace BilletBundle\Repository;
-
+use Doctrine\ORM\EntityRepository;
 /**
  * CommandeRepository
  *
@@ -10,4 +10,5 @@ namespace BilletBundle\Repository;
  */
 class CommandeRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

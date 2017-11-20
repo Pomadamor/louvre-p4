@@ -66,6 +66,8 @@ class Billet
     {
       // Par défaut, la date de l'annonce est la date d'aujourd'hui
       $this->dateVisite = new \Datetime();
+      $this->type_tarif = new ArrayColletion();
+      $this->pays = new ArrayColletion();
     }
 
     /**
@@ -166,4 +168,42 @@ class Billet
     {
         return $this->journee;
     }
+
+    // Notez le singulier, on ajoute une seule catégorie à la fois
+     public function addType_tarif(Type_tarif $type_tarif)
+     {
+       // Ici, on utilise l'ArrayCollection vraiment comme un tableau
+       $this->type_tarif[] = $type_tarif;
+     }
+
+     public function removeType_tarif(Type_tarif $type_tarif)
+     {
+       // Ici on utilise une méthode de l'ArrayCollection, pour supprimer la catégorie en argument
+       $this->type_tarif->removeElement($type_tarif);
+     }
+     // Notez le pluriel, on récupère une liste de catégories ici !
+     public function getType_tarif()
+     {
+       return $this->type_tarif;
+     }
+
+     // Notez le singulier, on ajoute une seule catégorie à la fois
+      public function addPays(Pays $pays)
+      {
+        // Ici, on utilise l'ArrayCollection vraiment comme un tableau
+        $this->pays[] = $pays;
+      }
+
+      public function removePays(Pays $pays)
+      {
+        // Ici on utilise une méthode de l'ArrayCollection, pour supprimer la catégorie en argument
+        $this->pays->removeElement($pays);
+      }
+      // Notez le pluriel, on récupère une liste de catégories ici !
+      public function getPays()
+      {
+        return $this->pays;
+      }
+
+
 }

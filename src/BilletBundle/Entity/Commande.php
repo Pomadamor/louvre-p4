@@ -21,13 +21,6 @@ class Commande
     /**
      * @var string
      *
-     * @ORM\Column(name="list_billet", type="string", length=255)
-     */
-    private $listBillet;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
@@ -43,31 +36,15 @@ class Commande
      *
      * @return int
      */
+
+     public function __construct()
+     {
+       $this->dateAchat = new \Datetime();
+     }
+
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set listBillet
-     *
-     * @param string $listBillet
-     *
-     * @return Commande
-     */
-    public function setListBillet($listBillet)
-    {
-        $this->listBillet = $listBillet;
-        return $this;
-    }
-    /**
-     * Get listBillet
-     *
-     * @return string
-     */
-    public function getListBillet()
-    {
-        return $this->listBillet;
     }
 
     /**
