@@ -1,6 +1,7 @@
 <?php
 namespace BilletBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Billet
  *
@@ -16,69 +17,86 @@ class Billet
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-    /**
+     private $id;
+
+     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $nom;
-    /**
+     private $nom;
+
+     /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=255)
      */
-    private $prenom;
+     private $prenom;
 
-    /**
+     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_visite", type="datetime")
      */
-    private $dateVisite;
-
+     private $dateVisite;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="journee", type="boolean")
      */
-    private $journee;
+     private $journee;
 
-   /**
+    /**
     *
     * @ORM\ManyToOne(targetEntity="BilletBundle\Entity\Commande")
     * @ORM\JoinColumn(referencedColumnName="id")
     */
-    private $commande;
+     private $commande;
 
-    /**
+     /**
      * @ORM\ManyToMany(targetEntity="BilletBundle\Entity\type_tarif")
      */
-    private $type_tarif;
+     private $type_tarif;
 
-    /**
+     /**
      * @ORM\ManyToMany(targetEntity="BilletBundle\Entity\Choix_pays")
      */
-    private $pays;
+     private $pays;
 
-    public function __construct()
-    {
-      // Par défaut, la date de l'annonce est la date d'aujourd'hui
-      $this->dateVisite = new \Datetime();
-      $this->type_tarif = new ArrayColletion();
-      $this->pays = new ArrayColletion();
-    }
+     public function __construct()
+     {
+        $this->dateVisite = new \Datetime();
+        $this->type_tarif = new ArrayColletion();
+        $this->pays = new ArrayColletion();
+     }
 
-    /**
+      /**
+      * @ORM\PrePersist
+      */
+      public function increase()
+      {
+        $this->getCommande()->increaseBillet();
+      }
+
+      /**
+      * @ORM\PreRemove
+      */
+      public function decrease()
+      {
+        $this->getCommande()->decreaseBillet();
+      }
+
+
+     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+     public function getId()
+     {
         return $this->id;
-    }
+     }
     /**
      * Set nom
      *
@@ -146,6 +164,21 @@ class Billet
         return $this->dateVisite;
     }
 
+    /**
+     * @param Commande $commande
+     */
+    public function setCommande(Commande $commande)
+    {
+      $this->commande = $commande;
+    }
+
+    /**
+     * @return Commande
+     */
+    public function getCommande()
+    {
+      return $this->commande;
+    }
 
     /**
      * Set journee

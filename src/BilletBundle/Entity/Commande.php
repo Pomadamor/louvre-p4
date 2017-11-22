@@ -1,4 +1,4 @@
-Confirmer<?php
+<?php
 namespace BilletBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
