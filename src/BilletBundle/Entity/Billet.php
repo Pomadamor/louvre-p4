@@ -237,6 +237,4 @@ class Billet
       {
         return $this->pays;
       }
-
-
 }
