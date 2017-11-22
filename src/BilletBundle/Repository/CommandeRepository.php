@@ -9,6 +9,16 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class CommandeRepository extends \Doctrine\ORM\EntityRepository
-
 {
+  public function getCommandes()
+   {
+     $query = $this->createQueryBuilder('c')
+       // Jointure sur l'attribut image
+       ->leftJoin('c.billet', 'b')
+       ->addSelect('b')
+       ->orderBy('c.date', 'DESC')
+       ->getQuery()
+     ;
+     return $query->getResult();
+   }
 }

@@ -25,7 +25,7 @@ class BilletController extends Controller
        $listCommandes = $this->getDoctrine()
          ->getManager()
          ->getRepository('BilletBundle:Commande')
-         ->findAll()
+         ->getCommandes()
        ;
 
        return $this->render('BilletBundle:Commande:index.html.twig', array(

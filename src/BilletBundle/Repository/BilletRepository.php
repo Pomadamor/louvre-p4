@@ -12,6 +12,16 @@ use Doctrine\ORM\QueryBuilder;
  */
 class BilletRepository extends \Doctrine\ORM\EntityRepository
 {
+
+  public function getBillets()
+   {
+     $query = $this->createQueryBuilder('b')
+       ->orderBy('b.date', 'DESC')
+       ->getQuery()
+     ;
+     return $query->getResult();
+   }
+
   public function getBilletWithCommande(array $commandeEmail)
   {
     $qb = $this->createQueryBuilder('b');
