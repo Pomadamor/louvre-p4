@@ -28,7 +28,7 @@ class BilletController extends Controller
          ->getCommandes()
        ;
 
-       return $this->render('BilletBundle:Commande:index.html.twig', array(
+       return $this->render('BilletBundle:Billet:index.html.twig', array(
          'listCommandes' => $listCommandes,
        ));
     }

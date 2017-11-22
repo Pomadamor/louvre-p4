@@ -14,9 +14,9 @@ class CommandeRepository extends \Doctrine\ORM\EntityRepository
    {
      $query = $this->createQueryBuilder('c')
        // Jointure sur l'attribut image
-       ->leftJoin('c.billet', 'b')
+       ->leftJoin('c.billets', 'b')
        ->addSelect('b')
-       ->orderBy('c.date', 'DESC')
+       ->orderBy('c.dateAchat', 'DESC')
        ->getQuery()
      ;
      return $query->getResult();
