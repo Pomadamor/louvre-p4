@@ -9,12 +9,12 @@ use BilletBundle\Entity\Billet;
 use BilletBundle\Entity\Commande;
 use BilletBundle\Entity\Choix_pays;
 use BilletBundle\Entity\type_tarif;
-// use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-// use Symfony\Component\Form\Extension\Core\Type\DateType;
-// use Symfony\Component\Form\Extension\Core\Type\FormType;
-// use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-// use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-// use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class BilletController extends Controller
 {
@@ -54,12 +54,29 @@ class BilletController extends Controller
 
     public function addAction(Request $request)
     {
-       $em = $this->getDoctrine()->getManager();
-       if ($request->isMethod('POST')) {
-         $request->getSession()->getFlashBag()->add('notice', 'Commande bien enregistrée.');
-         return $this->redirectToRoute('billet_view', array('id' => $commande->getId()));
-       }
-       return $this->render('BilletBundle:Billet:add.html.twig');
+      // On crée un objet Advert
+      $commande = new Commande();
+
+      // On crée le FormBuilder grâce au service form factory
+      $form = $this->get('form.factory')->createBuilder(FormType::class, $commande)
+        ->add('email',     TextType::class)
+        ->add('confirmer', CheckboxType::class)
+        ->add('save',      SubmitType::class)
+        ->getForm()
+      ;
+      if ($request->isMethod('POST')) {
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($commande);
+          $em->flush();
+          $request->getSession()->getFlashBag()->add('notice', 'Commande bien enregistrée.');
+          return $this->redirectToRoute('Billet_view', array('id' => $commande->getId()));
+        }
+      }
+      return $this->render('BilletBundle:Billet:add.html.twig', array(
+        'form' => $form->createView(),
+      ));
      }
 
      public function editAction($id, Request $request)
