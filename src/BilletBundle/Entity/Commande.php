@@ -1,11 +1,16 @@
 <?php
 namespace BilletBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * Commande
  *
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="BilletBundle\Repository\CommandeRepository")
+* @ORM\HasLifecycleCallbacks()
  */
 class Commande
 {
@@ -23,25 +28,31 @@ class Commande
      *
      * @ORM\Column(name="email", type="string", length=255)
      */
-    private $email;
+     private $email;
+
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateAchat", type="datetime")
      */
-    private $dateAchat;
-    /**
-     * Get id
-     *
-     * @return int
-     */
+     private $dateAchat;
+
+     /**
+      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+      */
+     private $updatedAt;
 
      public function __construct()
      {
        $this->dateAchat = new \Datetime();
      }
 
+     /**
+     * Get id
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -98,5 +109,14 @@ class Commande
       }
       return $prix;
 
- }
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDate()
+    {
+      $this->setUpdatedAt(new \Datetime());
+    }
+
 }

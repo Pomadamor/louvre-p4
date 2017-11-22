@@ -9,6 +9,6 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class CommandeRepository extends \Doctrine\ORM\EntityRepository
-{
 
+{
 }
