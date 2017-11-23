@@ -54,27 +54,6 @@ class Billet
     */
      private $commande;
 
-     /**
-     * @var string
-     *
-     * @ORM\Column(name="type_tarif", type="string", length=255)
-     */
-     private $type_tarif;
-
-     /**
-     * @var string
-     *
-     * @ORM\Column(name="pays", type="string", length=255)
-     */
-     private $pays;
-
-     public function __construct()
-     {
-        $this->dateVisite = new \Datetime();
-        $this->type_tarif = new ArrayColletion();
-        $this->pays = new ArrayColletion();
-     }
-
       /**
       * @ORM\PrePersist
       */
@@ -205,49 +184,5 @@ class Billet
     public function getJournee()
     {
         return $this->journee;
-    }
-
-    /**
-     * Set type_tarif
-     *
-     * @param string $type_tarif
-     *
-     * @return Billet
-     */
-    public function setType_tarif($type_tarif)
-    {
-        $this->type_tarif = $type_tarif;
-        return $this;
-    }
-    /**
-     * Get type_tarif
-     *
-     * @return string
-     */
-    public function getType_tarif()
-    {
-        return $this->type_tarif;
-    }
-
-    /**
-     * Set pays
-     *
-     * @param string $pays
-     *
-     * @return Billet
-     */
-    public function setPays($pays)
-    {
-        $this->pays = $pays;
-        return $this;
-    }
-    /**
-     * Get pays
-     *
-     * @return string
-     */
-    public function getPays()
-    {
-        return $this->pays;
     }
 }

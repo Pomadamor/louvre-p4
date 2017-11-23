@@ -18,9 +18,7 @@ class BilletType extends AbstractType
           ->add('nom')
           ->add('prenom')
           ->add('dateVisite')
-          ->add('journee')
-          ->add('type_tarif')
-          ->add('pays');
+          ->add('journee');
     }
 
     /**

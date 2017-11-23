@@ -50,7 +50,7 @@ class Commande
      private $updatedAt;
 
      /**
-     * @ORM\OneToMany(targetEntity="BilletBundle\Entity\Billet", mappedBy="commande")
+     * @ORM\OneToMany(targetEntity="BilletBundle\Entity\Billet", mappedBy="commande", cascade={"persist"})
      */
      private $billets; // Notez le « s », une commande est liée à plusieurs billets
 
