@@ -55,12 +55,16 @@ class Billet
      private $commande;
 
      /**
-     * @ORM\ManyToMany(targetEntity="BilletBundle\Entity\type_tarif")
+     * @var string
+     *
+     * @ORM\Column(name="type_tarif", type="string", length=255)
      */
      private $type_tarif;
 
      /**
-     * @ORM\ManyToMany(targetEntity="BilletBundle\Entity\Choix_pays")
+     * @var string
+     *
+     * @ORM\Column(name="pays", type="string", length=255)
      */
      private $pays;
 
@@ -118,6 +122,7 @@ class Billet
     {
         return $this->nom;
     }
+
     /**
      * Set prenom
      *
@@ -202,39 +207,47 @@ class Billet
         return $this->journee;
     }
 
-    // Notez le singulier, on ajoute une seule catégorie à la fois
-     public function addType_tarif(Type_tarif $type_tarif)
-     {
-       // Ici, on utilise l'ArrayCollection vraiment comme un tableau
-       $this->type_tarif[] = $type_tarif;
-     }
+    /**
+     * Set type_tarif
+     *
+     * @param string $type_tarif
+     *
+     * @return Billet
+     */
+    public function setType_tarif($type_tarif)
+    {
+        $this->type_tarif = $type_tarif;
+        return $this;
+    }
+    /**
+     * Get type_tarif
+     *
+     * @return string
+     */
+    public function getType_tarif()
+    {
+        return $this->type_tarif;
+    }
 
-     public function removeType_tarif(Type_tarif $type_tarif)
-     {
-       // Ici on utilise une méthode de l'ArrayCollection, pour supprimer la catégorie en argument
-       $this->type_tarif->removeElement($type_tarif);
-     }
-     // Notez le pluriel, on récupère une liste de catégories ici !
-     public function getType_tarif()
-     {
-       return $this->type_tarif;
-     }
-
-     // Notez le singulier, on ajoute une seule catégorie à la fois
-      public function addPays(Pays $pays)
-      {
-        // Ici, on utilise l'ArrayCollection vraiment comme un tableau
-        $this->pays[] = $pays;
-      }
-
-      public function removePays(Pays $pays)
-      {
-        // Ici on utilise une méthode de l'ArrayCollection, pour supprimer la catégorie en argument
-        $this->pays->removeElement($pays);
-      }
-      // Notez le pluriel, on récupère une liste de catégories ici !
-      public function getPays()
-      {
+    /**
+     * Set pays
+     *
+     * @param string $pays
+     *
+     * @return Billet
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+        return $this;
+    }
+    /**
+     * Get pays
+     *
+     * @return string
+     */
+    public function getPays()
+    {
         return $this->pays;
-      }
+    }
 }
