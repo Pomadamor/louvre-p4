@@ -2,6 +2,7 @@
 
 namespace BilletBundle\Controller;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +31,7 @@ class BilletController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
     // On récupère l'annonce $id
-    $commande = $em->getRepository('BilletBundle:Billet')->find($id);
+    $commande = $em->getRepository('BilletBundle:Commande')->find($id);
     if (null === $commande) {
       throw new NotFoundHttpException("La commande d'id ".$id." n'existe pas.");
     }
@@ -49,18 +50,18 @@ class BilletController extends Controller
   {
     // On crée un objet Advert
     $commande = new Commande();
-    $form = $this->get('form.factory')->create(CommandeType::class, $commande);
+    $form = $this->createForm(CommandeType::class, $commande);
 
-    if ($request->isMethod('POST')) {
-      $form->handleRequest($request);
-      if ($form->isValid()) {
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($commande);
-        $em->flush();
-        $request->getSession()->getFlashBag()->add('notice', 'Commande bien enregistrée.');
-        return $this->redirectToRoute('Billet_view', array('id' => $commande->getId()));
-      }
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($commande);
+      $em->flush();
+      // $request->getSession()->getFlashBag()->add('notice', 'Commande bien enregistrée.');
+      $this->addFlash('notice', 'Commande bien enregistrée.');
+      return $this->redirectToRoute('Billet_view', array('id' => $commande->getId()));
     }
+
     return $this->render('BilletBundle:Billet:add.html.twig', array(
       'form' => $form->createView(),
     ));

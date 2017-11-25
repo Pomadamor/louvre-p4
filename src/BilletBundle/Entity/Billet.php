@@ -50,25 +50,25 @@ class Billet
     /**
     *
     * @ORM\ManyToOne(targetEntity="BilletBundle\Entity\Commande")
-    * @ORM\JoinColumn(referencedColumnName="id")
+    * @ORM\JoinColumn(referencedColumnName="id", nullable = false)
     */
      private $commande;
 
-      /**
-      * @ORM\PrePersist
-      */
-      public function increase()
-      {
-        $this->getCommande()->increaseBillet();
-      }
-
-      /**
-      * @ORM\PreRemove
-      */
-      public function decrease()
-      {
-        $this->getCommande()->decreaseBillet();
-      }
+      // /**
+      // * @ORM\PrePersist
+      // */
+      // public function increase()
+      // {
+      //   $this->getCommande()->increaseBillet();
+      // }
+      //
+      // /**
+      // * @ORM\PreRemove
+      // */
+      // public function decrease()
+      // {
+      //   $this->getCommande()->decreaseBillet();
+      // }
 
 
      /**

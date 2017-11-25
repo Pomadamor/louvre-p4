@@ -1,8 +1,11 @@
 <h3>Formulaire de commande</h3>
 
 <div class="well">
-  {{ form(form) }}
-  {{ form_row(form.billets) }}
+  {{ form_start(form) }}
+  {{ form_widget(form) }}
+    <button type="submit">plop</button>
+  {{ form_end(form) }}
+  {#{ form_row(form.billets) }#}
   <a href="#" id="add_billet" class="btn btn-default">Ajouter un billet</a>
 </div>
 
