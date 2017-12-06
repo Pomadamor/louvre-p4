@@ -58,7 +58,7 @@ class Billet
     /**
     *
     * @ORM\ManyToOne(targetEntity="BilletBundle\Entity\Commande")
-    * @ORM\JoinColumn(referencedColumnName="id", nullable = false)
+    * @ORM\JoinColumn(referencedColumnName="id", nullable = true)
     */
      private $commande;
 

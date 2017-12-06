@@ -5,7 +5,3 @@ core:
 billet:
     resource: "@BilletBundle/Resources/config/routing.yml"
     prefix:   /louvre
-
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
