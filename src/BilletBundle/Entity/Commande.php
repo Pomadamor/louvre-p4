@@ -2,8 +2,8 @@
 namespace BilletBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Commande
@@ -26,6 +26,7 @@ class Commande
     /**
      * @var string
      *
+     * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=255)
      */
      private $email;
@@ -34,6 +35,7 @@ class Commande
      * @var \DateTime
      *
      * @ORM\Column(name="dateAchat", type="datetime")
+     * @Assert\DateTime()
      */
      private $dateAchat;
 
@@ -41,6 +43,7 @@ class Commande
      * @var \Date
      *
      * @ORM\Column(name="date_visite", type="date")
+     * @Assert\Date()
      */
      private $dateVisite;
 

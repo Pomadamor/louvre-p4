@@ -22,6 +22,7 @@ class Billet
      /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="nom", type="string", length=255)
      */
      private $nom;
@@ -29,6 +30,7 @@ class Billet
      /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="prenom", type="string", length=255)
      */
      private $prenom;
@@ -36,6 +38,7 @@ class Billet
     /**
     * @var \Date
     *
+    * @Assert\DateTime()
     * @ORM\Column(name="date_visite", type="date")
     */
     private $dateNaissance;
@@ -43,6 +46,7 @@ class Billet
     /**
     * @var string
     *
+    * @Assert\Country()
     * @ORM\Column(name="pays", type="string", length=255)
     */
     private $pays;
