@@ -5,7 +5,7 @@ namespace BilletBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,9 +20,9 @@ class CommandeType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder
-    ->add('email',     TextType::class)
-    ->add('confirmer', CheckboxType::class, array('required' => false))
-    ->add('billets', CollectionType::class, array(
+    ->add('dateVisite',  DateType::class)
+    ->add('journee',     CheckboxType::class)
+    ->add('billets',     CollectionType::class, array(
           'entry_type'   => BilletType::class,
           'allow_add'    => true,
           'allow_delete' => true));

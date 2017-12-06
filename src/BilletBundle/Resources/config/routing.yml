@@ -3,7 +3,7 @@
 # Page d'accueil
 Billet_home :
     path:    /
-    defaults: {_controller: BilletBundle:Billet:index}
+    defaults: {_controller: BilletBundle:Billet:add}
     requirements:
         id: \d+
 

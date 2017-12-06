@@ -4,6 +4,8 @@ namespace BilletBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,8 +19,13 @@ class BilletType extends AbstractType
         $builder
           ->add('nom')
           ->add('prenom')
-          ->add('dateVisite')
-          ->add('journee');
+          ->add('pays',  CountryType::class, array(
+                'preferred_choices' => [
+                    'FR'
+                ]
+            ))
+          ->add('dateNaissance', BirthdayType::class)
+          ->add('reduit');
     }
 
     /**

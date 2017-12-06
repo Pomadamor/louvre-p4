@@ -33,19 +33,27 @@ class Billet
      */
      private $prenom;
 
-     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_visite", type="datetime")
-     */
-     private $dateVisite;
+    /**
+    * @var \Date
+    *
+    * @ORM\Column(name="date_visite", type="date")
+    */
+    private $dateNaissance;
+
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="pays", type="string", length=255)
+    */
+    private $pays;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="journee", type="boolean")
+     * @ORM\Column(name="reduit", type="boolean")
      */
-     private $journee;
+     private $reduit;
+
 
     /**
     *
@@ -125,15 +133,37 @@ class Billet
     }
 
     /**
-     * Set date
+     * Set pays
      *
-     * @param \DateTime $dateVisite
+     * @param string $pays
      *
      * @return Billet
      */
-    public function setDateVisite($dateVisite)
+    public function setpays($pays)
     {
-        $this->dateVisite = $dateVisite;
+        $this->pays = $pays;
+        return $this;
+    }
+    /**
+     * Get pays
+     *
+     * @return string
+     */
+    public function getpays()
+    {
+        return $this->pays;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \Date $dateNaissance
+     *
+     * @return Billet
+     */
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
 
         return $this;
     }
@@ -141,12 +171,34 @@ class Billet
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \Date
      */
-    public function getDateVisite()
+    public function getDateNaissance()
     {
-        return $this->dateVisite;
+        return $this->dateNaissance;
     }
+
+   /**
+    * Set reduit
+    *
+    * @param boolean $reduit
+    *
+    * @return Billet
+    */
+   public function setReduit($reduit)
+   {
+       $this->reduit = $reduit;
+       return $this;
+   }
+   /**
+    * Get reduit
+    *
+    * @return bool
+    */
+   public function getReduit()
+   {
+       return $this->reduit;
+   }
 
     /**
      * @param Commande $commande
@@ -164,25 +216,4 @@ class Billet
       return $this->commande;
     }
 
-    /**
-     * Set journee
-     *
-     * @param boolean $journee
-     *
-     * @return Billet
-     */
-    public function setJournee($journee)
-    {
-        $this->journee = $journee;
-        return $this;
-    }
-    /**
-     * Get journee
-     *
-     * @return bool
-     */
-    public function getJournee()
-    {
-        return $this->journee;
-    }
 }

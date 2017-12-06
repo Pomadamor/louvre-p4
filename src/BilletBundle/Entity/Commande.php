@@ -37,17 +37,26 @@ class Commande
      */
      private $dateAchat;
 
+     /**
+     * @var \Date
+     *
+     * @ORM\Column(name="date_visite", type="date")
+     */
+     private $dateVisite;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="journee", type="boolean")
+     */
+     private $journee;
+
     /**
     * @var boolean
     *
     * @ORM\Column(name="confirmer", type="boolean")
     */
      private $confirmer = true;
-
-     /**
-      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-      */
-     private $updatedAt;
 
      /**
      * @ORM\OneToMany(targetEntity="BilletBundle\Entity\Billet", mappedBy="commande", cascade={"persist"})
@@ -62,17 +71,9 @@ class Commande
      public function __construct()
      {
        $this->dateAchat = new \Datetime();
+       $this->dateVisite = new \Datetime();
        $this->billets = new ArrayCollection();
      }
-
-     /**
-     * @ORM\PreUpdate
-     */
-     public function updateDate()
-     {
-       $this->setUpdatedAt(new \Datetime());
-     }
-
 
      public function increaseBillets()
      {
@@ -92,6 +93,52 @@ class Commande
      public function getId()
      {
         return $this->id;
+     }
+
+     /**
+      * Set date
+      *
+      * @param \Date $dateVisite
+      *
+      * @return Billet
+      */
+     public function setDateVisite($dateVisite)
+     {
+         $this->dateVisite = $dateVisite;
+
+         return $this;
+     }
+
+     /**
+      * Get date
+      *
+      * @return \Date
+      */
+     public function getDateVisite()
+     {
+         return $this->dateVisite;
+     }
+
+     /**
+      * Set journee
+      *
+      * @param boolean $journee
+      *
+      * @return Billet
+      */
+     public function setJournee($journee)
+     {
+         $this->journee = $journee;
+         return $this;
+     }
+     /**
+      * Get journee
+      *
+      * @return bool
+      */
+     public function getJournee()
+     {
+         return $this->journee;
      }
 
      /**
@@ -181,21 +228,6 @@ class Commande
          return $this->billets;
        }
 
-      /**
-      * @param \DateTime $updatedAt
-      */
-       public function setUpdatedAt(\Datetime $updatedAt = null)
-       {
-           $this->updatedAt = $updatedAt;
-       }
-
-      /**
-      * @return \DateTime
-      */
-       public function getUpdatedAt()
-       {
-           return $this->updatedAt;
-       }
 
      public function getPrixTotal()
      {
