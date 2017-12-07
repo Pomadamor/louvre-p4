@@ -13,6 +13,13 @@ use BilletBundle\Entity\Commande;
 class BilletController extends Controller
 {
 
+  public function translationAction($name)
+  {
+    return $this->render('BilletBundle:Billet:translation.html.twig', array(
+      'name' => $name
+    ));
+  }
+
   public function indexAction()
   {
     // Pour récupérer la liste de toutes les commandes : on utilise findAll()

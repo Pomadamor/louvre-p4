@@ -1,14 +1,11 @@
 {% extends "BilletBundle::layout.html.twig" %}
 
 {% block body %}
+  <div class="row">
+    <div class="col-md-9">
+      <h2>Commande</h2>
+      {{ include("BilletBundle:Billet:form.html.twig") }}
 
-  <h2>Commande</h2>
-
-  {{ include("BilletBundle:Billet:form.html.twig") }}
-
-  <p>
-    Attention : cette annonce sera ajoutée directement
-    sur la page d'accueil après validation du formulaire.
-  </p>
-
+    </div>
+  </div>
 {% endblock %}

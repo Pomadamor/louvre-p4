@@ -12,3 +12,7 @@ _errors:
 
 _main:
     resource: routing.yml
+
+billet_translation:
+    path:     /traduction/{name}
+    defaults: {_controller: BilletBundle:Billet:translation}

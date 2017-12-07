@@ -1,0 +1,11 @@
+#######################Layout#############################
+header:
+    title: Billeterie du Louvre
+    subtitle: Réservation de billet en ligne
+    accueil: Accueil
+
+footer:
+    general: Copyright © 2017 - Ines ECK - Tous droits réservés -
+    legal: Mention légale
+
+date_format: dd-mm-yyyy
