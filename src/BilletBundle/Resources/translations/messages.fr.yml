@@ -9,3 +9,17 @@ footer:
     legal: Mention légale
 
 date_format: dd-mm-yyyy
+
+#######################Add#############################
+
+add:
+    info: Informations générales
+    infoJournee: Il existe 2 types de billets, le  billet « Journée » et le billet « Demi-journée » (il ne permet de rentrer qu’à partir de 14h00).
+    infoHoraire: Le musée est ouvert tous les jours sauf le mardi (et fermé les 1er mai, 1er novembre et 25 décembre).
+    infoTarif:
+        titre: Grille tarifaire
+        normal: « NORMAL » à partir de 12 ans à 16 €
+        enfant: « ENFANT » à partir de 4 ans et jusqu’à 12 ans, à 8 € (l’entrée est gratuite pour les enfants de moins de 4 ans)
+        senior: « SENIOR » à partir de 60 ans pour 12  €
+        reduit: « REDUIT » de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…)
+    panier: Panier

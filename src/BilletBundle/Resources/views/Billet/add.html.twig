@@ -2,10 +2,25 @@
 
 {% block body %}
   <div class="row">
-    <div class="col-md-9">
-      <h2>Commande</h2>
-      {{ include("BilletBundle:Billet:form.html.twig") }}
+    <div class="col-md-12">
+      <h2>{{'add.info'|trans}}</h2>
 
+      <i>{{'add.infoJournee'|trans}}<br>
+      {{'add.infoHoraire'|trans}}</i>
+
+      <h3>{{'add.infoTarif.titre'|trans}}</h3>
+
+      <ul>
+        <li>{{'add.infoTarif.normal'|trans}}</li>
+        <li>{{'add.infoTarif.enfant'|trans}}</li>
+        <li>{{'add.infoTarif.senior'|trans}}</li>
+        <li>{{'add.infoTarif.reduit'|trans}}</li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+    <h2>{{'add.panier'|trans}}</h2>
+
+      {{ include("BilletBundle:Billet:form.html.twig") }}
     </div>
   </div>
 {% endblock %}
