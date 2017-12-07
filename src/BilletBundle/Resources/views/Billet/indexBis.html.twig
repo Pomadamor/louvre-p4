@@ -1,13 +1,21 @@
-{% extends "BilletBundle::layout.html.twig" %}
-
-{% block body %}
-
-  <h2>Réserver un billet</h2>
-
-  {{ include("BilletBundle:Billet:form.html.twig") }}
-
-  <p>
-    Attention : vous vous apprétez a reserver un billet.
-  </p>
-
-{% endblock %}
+<div class="ticket_visitor">
+    <h4># {{ 'step_one.form.visitor.label'|trans }}</h4>
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            {{ form_row(form.name) }}
+        </div>
+        <div class="col-md-6 col-sm-6">
+            {{ form_row(form.surname) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            {{ form_row(form.birthday) }}
+        </div>
+        <div class="col-md-6 col-sm-6">
+            {{ form_row(form.country) }}
+        </div>
+    </div>
+    {{ form_row(form.reduced) }} <small>*{{ 'reduce_price_more'|trans }}</small>
+    <hr />
+</div>

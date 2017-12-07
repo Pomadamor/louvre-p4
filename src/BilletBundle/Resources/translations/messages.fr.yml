@@ -23,3 +23,9 @@ add:
         senior: « SENIOR » à partir de 60 ans pour 12  €
         reduit: « REDUIT » de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…)
     panier: Panier
+
+#######################Form#############################
+
+form:
+    dateVisite: date de la visite
+    journee: Durée

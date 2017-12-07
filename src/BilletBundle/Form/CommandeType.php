@@ -22,12 +22,13 @@ class CommandeType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder
-    ->add('email',       EmailType::class)
-    ->add('dateVisite',  DateType::class)
+    // ->add('email',       EmailType::class)
+    ->add('dateVisite', DateType::class, array(
+            'format' => 'dd-MM-yyyy',))
     ->add('journee',     ChoiceType::class, array(
       'choices'  => array(
         'Journee entiere' => true,
-        'demi journee' => false,
+        'Demi journee' => false,
         ),
       ))
     ->add('billets',     CollectionType::class, array(

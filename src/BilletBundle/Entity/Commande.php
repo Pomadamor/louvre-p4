@@ -44,6 +44,9 @@ class Commande
      *
      * @ORM\Column(name="date_visite", type="date")
      * @Assert\Date()
+      * @Assert\Range(
+      *      min = "now"
+      * )
      */
      private $dateVisite;
 
